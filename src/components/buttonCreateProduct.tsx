@@ -1,5 +1,4 @@
 type CreateProductType = {
-  id: number;
   name: string;
   price: number;
   description: string;
@@ -30,17 +29,6 @@ const ButtonCreateProduct = ({
           </label>
           <div>
             <h2 className="text-xl font-medium">Create new product</h2>
-            <input
-              className="input py-1.5 my-3"
-              placeholder="ID"
-              value={create.id}
-              onChange={(event) =>
-                setCreate({
-                  ...create,
-                  id: parseInt(event.target.value),
-                })
-              }
-            />
             <input
               className="input py-1.5 my-3"
               placeholder="Name"

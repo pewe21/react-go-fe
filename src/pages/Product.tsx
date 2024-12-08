@@ -1,6 +1,6 @@
-import Sidebar from "../components/sidebar";
-import ButtonCreateProduct from "../components/buttonCreateProduct";
-import DataProducts from "../components/dataProducts";
+import Sidebar from "../components/sidebar.tsx";
+import { NavLink } from "react-router-dom";
+import DataProducts from "../components/dataProducts.tsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -28,39 +28,6 @@ const Product = () => {
       });
   };
 
-  type CreateProductType = {
-    id: number;
-    name: string;
-    price: number;
-    description: string;
-  };
-  const [create, setCreate] = useState<CreateProductType>({
-    id: 0,
-    name: "",
-    price: 0,
-    description: "",
-  });
-
-  const createProduct = async () => {
-    await axios
-      .post("http://127.0.0.1:3000/product", create, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-
-        // setCreate({
-        //   id: 0,
-        //   name: "",
-        //   price: 0,
-        //   description: "",
-        // });
-      });
-  };
-
   useEffect(() => {
     getProducts();
   }, []);
@@ -76,11 +43,13 @@ const Product = () => {
           </div> */}
 
         <div className="flex mb-4 justify-end">
-          <ButtonCreateProduct
-            create={create}
-            setCreate={setCreate}
-            onCreateProd={createProduct}
-          />
+          <NavLink to={"/product/create"} className={"btn btn-secondary}"}> Tambahkan </NavLink>
+
+          {/*<ButtonCreateProduct*/}
+          {/*  create={create}*/}
+          {/*  setCreate={setCreate}*/}
+          {/*  onCreateProd={createProduct}*/}
+          {/*/>*/}
         </div>
         <div className="flex w-full overflow-x-auto">
           <DataProducts prod={prod} />
